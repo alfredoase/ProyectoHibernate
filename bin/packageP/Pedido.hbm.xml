@@ -11,14 +11,17 @@
         <property name="fechaPedido" type="date">
             <column name="FECHA" />
         </property>
-        <list name="listaItem" table="ITEMS">
+        
+        <list name="listaItem" table="ITEM" inverse="true" cascade="save-update">
 	        <key column="IDPEDIDO"/>
-	        <list-index column="POSICIONPEDIDO">
+	        <list-index column="POSICIONITEM">
 	        </list-index>
-	        <composite-element class="packageP.Item">
-	        	<property name="nombre" type="string" column="NOMBRE"/>
-	        	<property name="cantidadPedido" type="int" column="CANTIDAD"/>
-	        </composite-element>        
+	        <one-to-many class="packageP.Item" />      
         </list>
+        
+        <many-to-one name="empresa" class="packageP.Empresa" not-null="true">
+            <column name="IDEMPRESA" />
+        </many-to-one>
+        
     </class>
 </hibernate-mapping>

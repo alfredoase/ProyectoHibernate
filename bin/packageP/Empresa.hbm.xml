@@ -4,18 +4,28 @@
 <!-- Generated 06-ene-2019 20:20:45 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="packageP.Empresa" table="EMPRESA">
-        <id name="CIF" type="java.lang.String">
-            <column name="CIF" />
-            <generator class="assigned" />
+        <id name="idEmpresa" type="int">
+            <column name="IDEMPRESA" />
+            <generator class="increment" />
         </id>
+        <property name="CIF" type="java.lang.String">
+            <column name="CIF" />
+        </property>
         <property name="nombre" type="java.lang.String">
             <column name="NOMBRE" />
         </property>
         <property name="empleados" type="int">
             <column name="EMPLEADOS" />
         </property>
-        <property name="direccion" type="java.lang.String">
-            <column name="DIRECCION" />
-        </property>
+
+        <many-to-one name="direccion" class="packageP.Direccion" column="IDDIR" cascade="save-update" unique="true"/>
+        
+        <list name="listaPedido" table="PEDIDO" inverse="true" cascade="save-update">
+	        <key column="IDEMPRESA"/>
+	        <list-index column="POSICIONPEDIDO">
+	        </list-index>
+	        <one-to-many class="packageP.Pedido" />      
+        </list>
+        
     </class>
 </hibernate-mapping>

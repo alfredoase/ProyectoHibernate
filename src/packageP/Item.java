@@ -4,6 +4,8 @@ public class Item {
 	
 	private String nombre;
 	private int cantidadPedido;
+	private int id;
+	private Pedido pedido;
 	
 	public Item() {
 		
@@ -29,33 +31,19 @@ public class Item {
 		this.cantidadPedido = cantidadPedido;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + cantidadPedido;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		return result;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		if (cantidadPedido != other.cantidadPedido)
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		return true;
+	public Pedido getPedido() {
+		return pedido;
 	}
-	
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+ 
 	
 }
