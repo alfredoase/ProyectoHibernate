@@ -8,8 +8,17 @@
             <column name="IDPEDIDO" />
             <generator class="increment" />
         </id>
-        <property name="fechaPedido" type="java.lang.String">
+        <property name="fechaPedido" type="date">
             <column name="FECHA" />
         </property>
+        <list name="listaItem" table="ITEMS">
+	        <key column="IDPEDIDO"/>
+	        <list-index column="POSICIONPEDIDO">
+	        </list-index>
+	        <composite-element class="packageP.Item">
+	        	<property name="nombre" type="string" column="NOMBRE"/>
+	        	<property name="cantidadPedido" type="int" column="CANTIDAD"/>
+	        </composite-element>        
+        </list>
     </class>
 </hibernate-mapping>

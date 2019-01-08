@@ -1,12 +1,15 @@
 package packageP;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Pedido {
 
 	private int idPedido;
-	private String fechaPedido;
+	private Date fechaPedido;
+	
+	private List<Item> listaItem = new ArrayList<Item>();
 	
 	public int getIdPedido() {
 		return idPedido;
@@ -15,11 +18,17 @@ public class Pedido {
 		this.idPedido = idPedido;
 	}
 	
-	public String getFechaPedido() {
+	public Date getFechaPedido() {
 		return fechaPedido;
 	}
-	public void setFechaPedido(String fechaPedido) {
+	public void setFechaPedido(Date fechaPedido) {
 		this.fechaPedido = fechaPedido;
 	}
-
+	
+	public List<Item> getListaItem() {
+		return listaItem;
+	}
+	public void setListaItem(List<Item> listaItem) {
+		this.listaItem = listaItem;
+	}
 }

@@ -1,6 +1,6 @@
 package packageP;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import org.hibernate.Session;
 
@@ -11,27 +11,35 @@ public class Program {
 		
 		Session session = HibernateUtilities.getSessionFactory().openSession();
 		
+		//COMIENZA INSERTAR
 		session.beginTransaction();
 		
 		Pedido p = new Pedido();
-		p.setFechaPedido("23-34-2019");
+		p.setFechaPedido(new Date());
+		p.getListaItem().add(new Item("Pedido 1 Prueba Listas", 20));
+		p.getListaItem().add(new Item("Pedido 2 Prueba Listas", 10));
 
-		
 		session.save(p);
-		
 		session.getTransaction().commit(); 
 		
-		/*
+		//ACABA INSERTAR
+		
+		//COMIENZA MOSTRAR
+		
 		session.beginTransaction();
 		
+		Pedido ped = session.get(Pedido.class, 1);
+		System.out.println("Hemos recuperado pedido: "+ ped.getIdPedido() + " y fecha: " + ped.getFechaPedido());
 		
-		Empresa u = session.get(Empresa.class, "AFG");
-		System.out.println("Hemos recuperado empresa: "+u.getNombre()+" "+u.getCIF());
+		for(Item it : ped.getListaItem()) {
+			System.out.println("Con los siguientes items: "+ it.getNombre() + " " + it.getCantidadPedido());
+		}
 		
-		session.getTransaction().commit();*/
+		session.getTransaction().commit();
+		
+		//ACABA MOSTRAR
 		
 		session.close();	
-		
 		HibernateUtilities.getSessionFactory().close();
 	}
 	
